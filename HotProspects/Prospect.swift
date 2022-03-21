@@ -8,14 +8,23 @@
 import Foundation
 import Combine
 
-class Prospect: Identifiable, Codable {
+class Prospect: Identifiable, Codable, Comparable {
     var id: UUID
     var name = "Anonymus"
     var emailAddress = ""
+    
     fileprivate(set) var isContacted = false
     
     init() {
         self.id = UUID()
+    }
+    
+    static func ==(lhs: Prospect, rhs: Prospect) -> Bool {
+        return lhs.id == lhs.id
+    }
+    
+    static func <(lhs: Prospect, rhs: Prospect) -> Bool {
+        return lhs.name < rhs.name
     }
 }
 
