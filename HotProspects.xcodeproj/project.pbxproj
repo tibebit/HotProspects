@@ -30,6 +30,7 @@
 		CD72E79F27E78E1B00B94BCB /* Prospect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD72E79E27E78E1B00B94BCB /* Prospect.swift */; };
 		CD72E7A227E79BF700B94BCB /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = CD72E7A127E79BF700B94BCB /* CodeScanner */; };
 		CD72E7A427E8974C00B94BCB /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD72E7A327E8974C00B94BCB /* ImageSaver.swift */; };
+		CD72E7AA27E901FB00B94BCB /* FileManager+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD72E7A927E901FB00B94BCB /* FileManager+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		CD72E79C27E78C4500B94BCB /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
 		CD72E79E27E78E1B00B94BCB /* Prospect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prospect.swift; sourceTree = "<group>"; };
 		CD72E7A327E8974C00B94BCB /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
+		CD72E7A927E901FB00B94BCB /* FileManager+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				CD72E76A27E4A1B900B94BCB /* Preview Content */,
 				CD72E79E27E78E1B00B94BCB /* Prospect.swift */,
 				CD72E7A327E8974C00B94BCB /* ImageSaver.swift */,
+				CD72E7A927E901FB00B94BCB /* FileManager+Ext.swift */,
 			);
 			path = HotProspects;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD72E7AA27E901FB00B94BCB /* FileManager+Ext.swift in Sources */,
 				CD72E79D27E78C4500B94BCB /* MeView.swift in Sources */,
 				CD72E7A427E8974C00B94BCB /* ImageSaver.swift in Sources */,
 				CD72E79F27E78E1B00B94BCB /* Prospect.swift in Sources */,
