@@ -13,8 +13,14 @@ enum FilterType {
     case none, uncontacted, contacted
 }
 
+enum SortingType {
+    case byDate, byName
+}
+
 struct ProspectsView: View {
     @State private var isShowingScanner = false
+    @State private var sorting: SortingType = .byName
+    @State private var isShowingSortingDialog = false
     @EnvironmentObject var prospects: Prospects
     let filter: FilterType
     
@@ -28,6 +34,16 @@ struct ProspectsView: View {
             return prospects.people.filter({$0.isContacted})
         }
     }
+    
+    var sortedProspects: [Prospect] {
+        switch sorting {
+        case .byName:
+            return filteredProspects.sorted()
+        case .byDate:
+            return filteredProspects.sorted(by: { $0.date > $1.date })
+        }
+    }
+    
     
     var title: String {
         switch filter {
@@ -43,7 +59,7 @@ struct ProspectsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(Array(filteredProspects.enumerated()), id: \.offset) { index, prospect in
+                ForEach(Array(sortedProspects.enumerated()), id: \.offset) { index, prospect in
                     VStack(alignment: .leading) {
                         HStack {
                             if filter == .none {
@@ -87,18 +103,33 @@ struct ProspectsView: View {
                             .tint(.orange)
                         }
                     }
+                    .confirmationDialog("Sort", isPresented: $isShowingSortingDialog, titleVisibility: .visible) {
+                        Button("By Name") {
+                            sorting = .byName
+                        }
+                        Button("By Most Recent") {
+                            sorting = .byDate
+                        }
+                    }
                 }
             }
             .navigationTitle(title)
             .toolbar {
-                Button {
-                    isShowingScanner = true
-                } label: {
-                    Label("Scan", systemImage: "qrcode.viewfinder")
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        isShowingScanner = true
+                    } label: {
+                        Label("Scan", systemImage: "qrcode.viewfinder")
+                    }
+                    Button {
+                        isShowingSortingDialog = true
+                    } label: {
+                        Label("Sort", systemImage: "arrow.up.arrow.down.square.fill")
+                    }
                 }
             }
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "Fabio Tiberio\nfabiotibe.bit@gmail.com", completion: handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: "Zaal Pepe\ngiorgiopepe@gmail.com", completion: handleScan)
             }
         }
     }

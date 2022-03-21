@@ -12,11 +12,14 @@ class Prospect: Identifiable, Codable, Comparable {
     var id: UUID
     var name = "Anonymus"
     var emailAddress = ""
+    // the date at the time of creation
+    var date: Date
     
     fileprivate(set) var isContacted = false
     
     init() {
         self.id = UUID()
+        self.date = Date()
     }
     
     static func ==(lhs: Prospect, rhs: Prospect) -> Bool {
