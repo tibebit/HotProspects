@@ -12,7 +12,7 @@ class Prospect: Identifiable, Codable, Comparable {
     var id: UUID
     var name = "Anonymus"
     var emailAddress = ""
-    // the date at the time of creation
+    /// The date when the prospect has been created
     var date: Date
     
     fileprivate(set) var isContacted = false
