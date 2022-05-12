@@ -60,7 +60,7 @@ struct MeView: View {
         
         if let outputImage = filter.outputImage {
             if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
-                return qrCode
+                return UIImage(cgImage: cgImage)
             }
         }
         
