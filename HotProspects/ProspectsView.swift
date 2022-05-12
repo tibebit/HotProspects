@@ -7,7 +7,6 @@
 
 import SwiftUI
 import CodeScanner
-import UserNotifications
 
 enum FilterType {
     case none, uncontacted, contacted
