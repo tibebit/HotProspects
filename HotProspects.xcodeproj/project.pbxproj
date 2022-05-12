@@ -33,6 +33,7 @@
 		CD72E7AA27E901FB00B94BCB /* FileManager+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD72E7A927E901FB00B94BCB /* FileManager+Ext.swift */; };
 		CDCE04FA282AAFA4007FF150 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = CDCE04F9282AAFA4007FF150 /* CodeScanner */; };
 		CDCE04FD282AAFBC007FF150 /* SamplePackage in Frameworks */ = {isa = PBXBuildFile; productRef = CDCE04FC282AAFBC007FF150 /* SamplePackage */; };
+		CDCE04FF282AB733007FF150 /* AddNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE04FE282AB733007FF150 /* AddNotificationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		CD72E79E27E78E1B00B94BCB /* Prospect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prospect.swift; sourceTree = "<group>"; };
 		CD72E7A327E8974C00B94BCB /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		CD72E7A927E901FB00B94BCB /* FileManager+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Ext.swift"; sourceTree = "<group>"; };
+		CDCE04FE282AB733007FF150 /* AddNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotificationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				CD72E79E27E78E1B00B94BCB /* Prospect.swift */,
 				CD72E7A327E8974C00B94BCB /* ImageSaver.swift */,
 				CD72E7A927E901FB00B94BCB /* FileManager+Ext.swift */,
+				CDCE04FE282AB733007FF150 /* AddNotificationView.swift */,
 			);
 			path = HotProspects;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				CD72E79B27E78C3A00B94BCB /* ProspectsView.swift in Sources */,
 				CD72E76727E4A1B700B94BCB /* ContentView.swift in Sources */,
 				CD72E76527E4A1B700B94BCB /* HotProspectsApp.swift in Sources */,
+				CDCE04FF282AB733007FF150 /* AddNotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

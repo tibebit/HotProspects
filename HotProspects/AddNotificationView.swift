@@ -7,18 +7,17 @@
 import UserNotifications
 import SwiftUI
 
-public enum NotificationError: LocalizedError {
-    case missingPermissions
-    
-    public var errorDescription: String? {
-        "Error"
-    }
-    public var failureReason: String? {
-        "Notification aren't enabled for HotProspects"
+fileprivate struct NotificationError: LocalizedError {
+    var errorDescription: String? {
+        "Missing Permissions"
     }
     
-    public var recoverySuggestion: String? {
-        "Go to Settings>>HotProspects>>Notifications to activate notifications for this app"
+    var failureReason: String? {
+        "You haven't enabled HotProspects to send notifications to you"
+    }
+    
+    var recoverySuggestion: String? {
+        "Go to Settings"
     }
 }
 
@@ -26,8 +25,8 @@ struct AddNotificationView: View {
     public var prospect: Prospect
     @Environment(\.dismiss) private var dismiss
     @State private var date: Date = Date.now
-    @State private var isShowingConfirmationDialog = false
-    @State private var error: NotificationError?
+    @State private var isPresentingAlert = false
+    @State private var notificationError: NotificationError?
     
     var body: some View {
         Form {
@@ -45,15 +44,13 @@ struct AddNotificationView: View {
             }
             
         }
-        .alert(isPresented: $isShowingConfirmationDialog, error: error) { error in
-            Button("Dismiss") {
-                dismiss()
-            }
+        .alert(isPresented: $isPresentingAlert, error: notificationError) { error in
+            Button(error.recoverySuggestion!, action: {
+                openSettings()
+            })
         } message: { error in
-            
+            Text(error.failureReason!)
         }
-        
-        
     }
     
     private func addNotification(on date: Date) {
@@ -85,16 +82,18 @@ struct AddNotificationView: View {
                     if success {
                         addRequest()
                     } else {
-                        self.error = NotificationError.missingPermissions
-                        DispatchQueue.main.async {
-                            self.isShowingConfirmationDialog = true
-                        }
+                        notificationError = NotificationError()
+                        isPresentingAlert = true
                     }
                 }
             }
         }
     }
     
+    private func openSettings() {
+        let url = URL(string: UIApplication.openSettingsURLString)!
+        UIApplication.shared.open(url)
+    }
 }
 
 struct AddNotificationView_Previews: PreviewProvider {
