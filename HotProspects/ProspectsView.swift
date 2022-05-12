@@ -21,7 +21,10 @@ struct ProspectsView: View {
     @State private var isShowingScanner = false
     @State private var sorting: SortingType = .byName
     @State private var isShowingSortingDialog = false
+    @State private var isShowingNotificationDialog = false
     @EnvironmentObject var prospects: Prospects
+    @State private var selectedProspect: Prospect?
+    
     let filter: FilterType
     
     var filteredProspects: [Prospect] {
@@ -63,8 +66,7 @@ struct ProspectsView: View {
                     VStack(alignment: .leading) {
                         HStack {
                             if filter == .none {
-                                Image(systemName: prospect.isContacted ? "person.crop.circle.fill.badge.checkmark"
-                                                                       : "person.crop.circle.badge.xmark")
+                                Image(systemName: prospect.isContacted ? "person.crop.circle.fill.badge.checkmark": "person.crop.circle.badge.xmark")
                                     .font(.title)
                                     .foregroundColor(prospect.isContacted ? .green : .blue)
                             }
@@ -96,7 +98,7 @@ struct ProspectsView: View {
                             }
                             .tint(.green)
                             Button {
-                                addNotification(for: prospect)
+                                selectedProspect = prospect
                             } label: {
                                 Label("Remind Me", systemImage: "bell")
                             }
@@ -131,6 +133,9 @@ struct ProspectsView: View {
             .sheet(isPresented: $isShowingScanner) {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "Zaal Pepe\ngiorgiopepe@gmail.com", completion: handleScan)
             }
+            .sheet(item: $selectedProspect) { prospect in
+                AddNotificationView(prospect: prospect)
+            }
         }
     }
     
@@ -149,40 +154,6 @@ struct ProspectsView: View {
             prospects.add(person)
         case .failure(let error):
             print("Scanning failed: \(error.localizedDescription)")
-        }
-    }
-    
-    func addNotification(for prospect: Prospect) {
-        let center = UNUserNotificationCenter.current()
-        
-        let addRequest = {
-            let content = UNMutableNotificationContent()
-            content.title = "Contact \(prospect.name)"
-            content.subtitle = prospect.emailAddress
-            content.sound = UNNotificationSound.default
-            
-            var dateComponents = DateComponents()
-            dateComponents.hour = 9
-//            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-            
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-            
-            center.add(request)
-        }
-        
-        center.getNotificationSettings { settings in
-            if settings.authorizationStatus == .authorized {
-                addRequest()
-            } else {
-                center.requestAuthorization(options: [.sound, .alert, .badge]) { success, error in
-                    if success {
-                        addRequest()
-                    } else {
-                        print("D'oh")
-                    }
-                }
-            }
         }
     }
 }
