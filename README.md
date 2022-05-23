@@ -5,16 +5,24 @@ You can use this application to track people that you meet at conferences. It sh
 The project has 2 modules:
 * **Hot Prospects**: the actual application
 * **Techniques**: made of files that demonstrate the knowledge needed to build this application
+### MeView
+<img src="HotProspects/Resources/Screenshots/me_view.jpeg" alt="SearchVC-Interface" width="320" height="580">
 
-# Requirements
+### Prospects View
+<img src="HotProspects/Resources/Screenshots/contacts_list.jpeg" alt="SearchVC-Interface" width="320" height="580">
+
+### Code Scanner View
+<img src="HotProspects/Resources/Screenshots/code_scanner.jpeg" alt="SearchVC-Interface" width="320" height="580">
+
+## Requirements
 You will need the following requirements to build and run this project:
 * iOS 15
 * Xcode 13
 
-# Credits
+## Credits
 This application is part of the 100 days of SwiftUI course offered by Paul Hudson.
 
-# License
+## License
 MIT License
 
 Copyright (c) 2022 Fabio Tiberio
